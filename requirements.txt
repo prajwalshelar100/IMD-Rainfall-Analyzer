@@ -1,0 +1,7 @@
+pandas~=2.2.2
+matplotlib~=3.9.1
+scikit-learn~=1.5.1
+plotly~=5.22.0
+imdlib~=0.1.20
+seaborn~=0.13.2
+customtkinter~=5.2.2
