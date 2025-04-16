@@ -18,10 +18,10 @@ def perform_analysis(data):
         "Yield (T/Ha)": [3.6, 3.6, 3.7, 3.9, 4.0, 4.1, 4.1, 4.2, 4.3]
     }
 
-    # Create DataFrame for agricultural data
+    # Creating DataFrame
     agri_df = pd.DataFrame(agri_data)
 
-    # Strip any leading/trailing spaces from column names (if any)
+    # Cleaning data for leading and trailing spaces
     agri_df.columns = agri_df.columns.str.strip()
 
     # Extract the starting year from the "Year" column and convert to integer
@@ -36,23 +36,22 @@ def perform_analysis(data):
     merged_df = pd.merge(agri_df, annual_rainfall_df, left_on='Year', right_on='year', how='left')
     merged_df.drop(columns=['year'], inplace=True)
 
-    # Prepare the dataset for modeling
+    # Preparing the dataset for modeling
     X = merged_df[['rain']]
     y = merged_df['Yield (T/Ha)']
 
-    # Split the data
+    # Spliting data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.29, random_state=42)
 
     # Create and train the model
     model = LinearRegression()
     model.fit(X_train, y_train)
 
-    # Predictions and evaluation
+    # Prediction model
     y_pred = model.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
     print(f"Mean Squared Error: {mse}")
 
-    # Create a summary DataFrame for visualization
     summary_df = pd.DataFrame({
         'Year': merged_df['Year'],
         'Actual Yield': y,
