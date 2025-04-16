@@ -6,16 +6,14 @@ import importlib
 import customtkinter as ctk
 import os
 
-#main window
+#Main GUI Setup
 root = ctk.CTk()
 root.title("IMD Rainfall Analyzer")
 root.geometry("730x730")
 
-# customTinkter setup
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
-# Title
 title_box = ctk.CTkFrame(root, corner_radius=0, bg_color="grey")
 title_box.pack(pady=10, padx=20, fill="x")
 
@@ -23,9 +21,6 @@ title_label = ctk.CTkLabel(title_box, text="Rainfall Analytics and Analysis Appl
 title_label.pack(pady=10)
 
 
-
-
-# Tooltips
 def create_tooltip(widget, text):
     tooltip = ctk.CTkLabel(widget, text=text, bg_color="gray", text_color="white", fg_color="black")
     def on_enter(event):
